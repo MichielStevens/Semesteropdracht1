@@ -6,6 +6,8 @@ const int switch6 = 9;
 const int switch5 = 8;
 const int switch4 = 7;
 const int switch3 = 6;
+const int switch2 = 5;
+const int switch1 = 4;
 
 byte smiley1 [8][8] = {
   {0,0,1,1,1,1,0,0},
@@ -23,8 +25,19 @@ byte smiley2 [8][8] = {
   {0,1,0,0,0,0,1,0},
   {1,0,1,0,0,1,0,1},
   {1,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,1},
   {1,0,1,1,1,1,0,1},
+  {1,0,0,0,0,0,0,1},
+  {0,1,0,0,0,0,1,0},
+  {0,0,1,1,1,1,0,0}
+};
+
+byte smiley3 [8][8] = {
+  {0,0,1,1,1,1,0,0},
+  {0,1,0,0,0,0,1,0},
+  {1,0,1,0,0,1,0,1},
+  {1,0,0,0,0,0,0,1},
+  {1,0,0,1,1,0,0,1},
+  {1,0,1,0,0,1,0,1},
   {0,1,0,0,0,0,1,0},
   {0,0,1,1,1,1,0,0}
 };
@@ -162,7 +175,9 @@ void setup() {
   pinMode(switch6, INPUT);       
   pinMode(switch5, INPUT);    
   pinMode(switch4, INPUT);    
-  pinMode(switch3, INPUT);  
+  pinMode(switch3, INPUT);
+  pinMode(switch2, INPUT); 
+  pinMode(switch1, INPUT); 
 
   init();
 
