@@ -29,6 +29,17 @@ byte smiley2 [8][8] = {
   {0,0,1,1,1,1,0,0}
 };
 
+byte smiley3 [8][8] = {
+  {0,0,1,1,1,1,0,0},
+  {0,1,0,0,0,0,1,0},
+  {1,0,1,0,0,1,0,1},
+  {1,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,1},
+  {1,0,0,1,1,0,0,1},
+  {0,1,1,0,0,1,1,0},
+  {0,0,1,1,1,1,0,0}
+};
+
 word clearScreen =0b0000000000000000;
 
 word led[9][9];
@@ -174,11 +185,14 @@ void loop(){
 
   if(digitalRead(switch3) == 1)
   {
-    for(int a = 0; a < 20; a++){
+    for(int a = 0; a < 40; a++){
     displayBericht(smiley1);
     }    
-    for(int a = 0; a < 20; a++){
+    for(int a = 0; a < 40; a++){
     displayBericht(smiley2);
+    }
+    for(int a = 0; a < 40; a++){
+    displayBericht(smiley3);
     }}
     
    else{
