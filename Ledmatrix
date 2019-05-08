@@ -6,6 +6,8 @@ const int switch6 = 9;
 const int switch5 = 8;
 const int switch4 = 7;
 const int switch3 = 6;
+const int switch2 = 5;
+const int switch1 = 4;
 
 byte smiley1 [8][8] = {
   {0,0,1,1,1,1,0,0},
