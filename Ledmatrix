@@ -2,14 +2,14 @@
 const int shiftClockPin = 10;  //SH
 const int latchClockPin = 11;  //ST
 const int serialInputPin = 12; //DS
-const int switch6 = 9;
-const int switch5 = 8;
-const int switch4 = 7;
-const int switch3 = 6;
-const int switch2 = 5;
-const int switch1 = 4;
-
-byte P (pxl) [8][8] = {
+const int switch6 = 9;//Animatie 1
+const int switch5 = 8;//Animatie 2
+const int switch4 = 7;//Animatie 3
+const int switch3 = 6;//Animatie 4
+const int switch2 = 5;//Snelheid animatie verhogen
+const int switch1 = 4;//Snelheid animatie verminderen
+int b = 40; //Snelheid van de animatie
+byte P [8][8] = {
   {0,0,0,0,0,0,0,0},
   {0,1,1,1,1,1,0,0},
   {0,1,0,0,0,1,0,0},
@@ -20,7 +20,7 @@ byte P (pxl) [8][8] = {
   {0,1,0,0,0,0,0,0}
 };
 
-byte X (pxl)[8][8] = {
+byte X[8][8] = {
   {0,0,0,0,0,0,0,0},
   {0,1,0,0,0,0,1,0},
   {0,0,1,0,0,1,0,0},
@@ -31,7 +31,7 @@ byte X (pxl)[8][8] = {
   {0,0,0,0,0,0,0,0}
 };
 
-byte L (pxl) [8][8] = {
+byte L [8][8] = {
   {0,0,0,0,0,0,0,0},
   {0,1,0,0,0,0,0,0},
   {0,1,0,0,0,0,0,0},
@@ -164,7 +164,7 @@ byte opposite_dots2 [8][8] = {
  {1,0,1,0,1,0,1,0}
 };
 
-byte  [8][8] = {
+byte arrow1 [8][8] = {
   {0,0,0,1,1,0,0,0},
   {0,0,1,1,0,0,0,1},
   {0,1,1,0,0,0,1,1},
@@ -175,7 +175,7 @@ byte  [8][8] = {
   {0,0,0,1,1,0,0,0}
 };
 
-byte  [8][8] = {
+byte arrow2 [8][8] = {
   {0,0,1,1,0,0,0,1},
   {0,1,1,0,0,0,1,0},
   {1,1,0,0,0,1,1,0},
@@ -186,7 +186,7 @@ byte  [8][8] = {
   {0,0,1,1,0,0,0,1}
 };
 
-byte  [8][8] = {
+byte arrow3 [8][8] = {
   {0,1,1,0,0,0,1,1},
   {1,1,0,0,0,1,1,0},
   {1,0,0,0,1,1,0,0},
@@ -197,7 +197,7 @@ byte  [8][8] = {
   {0,1,1,0,0,0,1,1}
 };
 
-byte  [8][8] = {
+byte arrow4 [8][8] = {
   {1,1,0,0,0,1,1,0},
   {1,0,0,0,1,1,0,0},
   {0,0,0,1,1,0,0,0},
@@ -208,7 +208,7 @@ byte  [8][8] = {
   {1,1,0,0,0,1,1,0}
 };
 
-byte  [8][8] = {
+byte arrow5 [8][8] = {
   {1,0,0,0,1,1,0,0},
   {0,0,0,1,1,0,0,0},
   {0,0,1,1,0,0,0,1},
@@ -363,20 +363,88 @@ void setup() {
 }
 
 void loop(){
+int c = 0;
 
-  if(digitalRead(switch3) == 1)
+  while (digitalRead(switch2) == 0){ // Elke keer dat je op switch 2 drukt, laat hij de animatie trager gaan.
+      if(c == 0)
+      {
+        b += 10;
+        c++;
+      }
+  }
+
+  while (digitalRead(switch1) == 0){ // Elke keer dat je op switch 1 drukt, laat hij de animatie sneller gaan.
+    if(c == 0)
+    {
+      if(b > 10)
+      {
+      b -= 10;
+      c++;
+      }
+    }
+  }
+    
+  
+  if(digitalRead(switch3) == 1)  //Animatie 1, Smiley
   {
-    for(int a = 0; a < 40; a++){
+    for(int a = 0; a < b; a++){
     displayBericht(smiley1);
     }    
-    for(int a = 0; a < 40; a++){
+    for(int a = 0; a < b; a++){
     displayBericht(smiley2);
     }
-    for(int a = 0; a < 40; a++){
+    for(int a = 0; a < b; a++){
     displayBericht(smiley3);
+    }}
+
+  if(digitalRead(switch4) == 1)  //Animatie 2, PXL in tekst
+  {
+    for(int a = 0; a < b; a++){
+    displayBericht(P);
+    }    
+    for(int a = 0; a < b; a++){
+    displayBericht(X);
+    }
+    for(int a = 0; a < b; a++){
+    displayBericht(L);
+    }}
+
+  if(digitalRead(switch5) == 1)  // Animatie 3, Een explosie
+  {
+    for(int a = 0; a < b; a++){
+    displayBericht(explosion1);
+    }    
+    for(int a = 0; a < b; a++){
+    displayBericht(explosion2);
+    }
+    for(int a = 0; a < b; a++){
+    displayBericht(explosion3);
+    }
+    for(int a = 0; a < b; a++){
+    displayBericht(explosion4);
+    }
+    for(int a = 0; a < b; a++){
+    displayBericht(explosion5);
+    }}
+
+  if(digitalRead(switch6) == 1)  // Animatie 4, Een pijl
+  {
+    for(int a = 0; a < b; a++){
+      displayBericht(arrow1);
+    }    
+    for(int a = 0; a < b; a++){
+      displayBericht(arrow2);
+    }
+    for(int a = 0; a < b; a++){
+      displayBericht(arrow3);
+    }
+    for(int a = 0; a < b; a++){
+      displayBericht(arrow4);
+    }
+    for(int a = 0; a < b; a++){
+      displayBericht(arrow5);
     }}
     
    else{
-    displayData(clearScreen);
+     displayData(clearScreen);  //Als er geen knop in gedrukt is, moet de ledmatrix geen licht geven.
    }}
-
